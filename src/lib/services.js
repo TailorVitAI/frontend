@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { goto } from '$app/navigation';
 
-async function fetchAPI(endpoint, options = {}, requiresAuth = true, queryParams = {}, isFileDownload = false) {
+export async function fetchAPI(endpoint, options = {}, requiresAuth = true, queryParams = {}, isFileDownload = false) {
     const headers = {
         ...options.headers,
     };
@@ -15,7 +15,7 @@ async function fetchAPI(endpoint, options = {}, requiresAuth = true, queryParams
         const token = localStorage.getItem('access_token');
         if (!token) {
             goto('/auth');
-            throw new Error('Authentication required');
+            throw new Error(`Authentication required to access ${endpoint}`);
         }
         headers['Authorization'] = `Bearer ${token}`;
     }
@@ -33,14 +33,13 @@ async function fetchAPI(endpoint, options = {}, requiresAuth = true, queryParams
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.error || 'API request failed');
+            throw errorData;
         }
 
         if (isFileDownload) {
             const blob = await response.blob();
             const contentDisposition = response.headers.get('content-disposition');
             let fileName = 'file';
-            console.log(contentDisposition);
             if (contentDisposition) {
                 const fileNameMatch = contentDisposition.match(/filename="?(.*?)"?(;|$)/);
                 if (fileNameMatch && fileNameMatch[1]) {
@@ -56,7 +55,13 @@ async function fetchAPI(endpoint, options = {}, requiresAuth = true, queryParams
             a.click();
             a.remove();
         } else {
-            return await response.json();
+            try {
+                return await response.json();
+
+            } catch (e) {
+                console.warn('Failed to parse the response.', e);
+                return null;
+            }
         }
     } catch (error) {
         console.error('API request error:', error);
@@ -70,6 +75,9 @@ export async function login_user(username, password) {
             method: 'POST',
             body: JSON.stringify({ username, password }),
         }, false);
+        if (data.is_staff) {
+            throw Error("Forbidden; you can't access dashboard with this account.");
+        }
         localStorage.setItem('access_token', data.access);
         localStorage.setItem('refresh_token', data.refresh);
         goto('/');
@@ -86,9 +94,5 @@ export function logout_user() {
 }
 
 export async function get_user_account() {
-    try {
-        return await fetchAPI('/api/auth/user/', { method: 'GET' });
-    } catch (error) {
-        console.error('Fetching failed:', error.message);
-    }
+    return await fetchAPI('/api/auth/user/', { method: 'GET' }, true);
 }
