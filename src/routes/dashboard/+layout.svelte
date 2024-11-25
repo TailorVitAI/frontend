@@ -20,7 +20,7 @@
 	{#if loaded}
 		<div class="flex">
 			<SidebarWrapper title="Company" subtitle="company title" logo={logo_square}>
-				<SidebarItem label={$t('overview')} navigate={'/404'} />
+				<SidebarItem label={$t('My Profile')} navigate={'dashboard/'} />
 			</SidebarWrapper>
 
 			<div class="main-page w-full">
