@@ -40,7 +40,7 @@
 		<h5 class="flex justify-center mt-10 text-lg font-medium text-gray-900 dark:text-white">
 			Sign in to your account
 		</h5>
-		<div class="flex flex-col space-y-6 mt-5">
+		<form class="flex flex-col space-y-6 mt-5" action="">
 			<Label class="space-y-2">
 				<span>Username</span>
 				<Input
@@ -69,7 +69,7 @@
 				on:click={handle_login}>Login</Button
 			>
 			<Label color="red">{error_msg}</Label>
-		</div>
+		</form>
 
 		<!-- <div class="relative flex py-5 items-center">
 			<div class="flex-grow border-t border-gray-400"></div>
