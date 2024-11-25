@@ -17,7 +17,7 @@
 		login_user(username, password)
 			// @ts-ignore
 			.then((userCredential) => {
-				goto('/');
+				goto('/dashboard');
 			})
 			// @ts-ignore
 			.catch((error) => {
