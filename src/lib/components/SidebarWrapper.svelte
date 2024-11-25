@@ -31,7 +31,7 @@
 		</SidebarWrapper>
 	</div>
 	<div class="mb-5">
-		<div class="flex justify-center mb-3">
+		<!-- <div class="flex justify-center mb-3">
 			<img width="120" src={logo_wide} alt="logo" class="grayscale" />
 		</div>
 		<div class="flex justify-center mt-3">
@@ -39,7 +39,7 @@
 				btnClass="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5 border mr-1"
 			/>
 			<LanguageSwitch />
-		</div>
+		</div> -->
 	</div>
 </Sidebar>
 
