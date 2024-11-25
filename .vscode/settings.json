@@ -1,0 +1,30 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "files.exclude": {
+        ".eslintignore": true,
+        ".eslintrc.cjs": true,
+        ".npmrc": true,
+        ".prettierignore": true,
+        ".prettierrc": true,
+        ".svelte-kit": true,
+        "**/app.d.ts": true,
+        "jsconfig.json": true,
+        "node_modules": true,
+        "postcss.config.cjs": true,
+        "svelte.config.js": true,
+        "vite.config.js": true,
+        "**/app.pcss": true,
+        "tailwind.config.cjs": true,
+        "pnpm-lock.yaml": true,
+        "package.json": true,
+    },
+    "cSpell.words": [
+
+    ]
+}
