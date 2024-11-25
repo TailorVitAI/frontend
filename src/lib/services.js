@@ -96,3 +96,13 @@ export function logout_user() {
 export async function get_user_account() {
     return await fetchAPI('/api/auth/user/', { method: 'GET' }, true);
 }
+
+// ---- 
+
+export async function get_user_profiles() {
+    return await fetchAPI('/api/main/profile/', { method: 'GET' }, true);
+}
+
+export async function update_user_profile(id, profile) {
+    return await fetchAPI(`/api/main/profile/${id}/`, { method: 'PATCH', body: JSON.stringify(profile) }, true);
+}
