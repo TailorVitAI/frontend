@@ -19,7 +19,7 @@
 <div>
 	{#if loaded}
 		<div class="flex">
-			<SidebarWrapper title="Company" subtitle="company title" logo={logo_square}>
+			<SidebarWrapper title="TailorVitAI" subtitle="tailor your CV to the job" logo={logo_square}>
 				<SidebarItem label={$t('My Profile')} navigate={'/dashboard/'} />
 				<SidebarItem label={$t('My Experiences')} navigate={'/dashboard/experiences'} />
 			</SidebarWrapper>
