@@ -22,6 +22,7 @@
 			<SidebarWrapper title="TailorVitAI" subtitle="tailor your CV to the job" logo={logo_square}>
 				<SidebarItem label={$t('My Profile')} navigate={'/dashboard/'} />
 				<SidebarItem label={$t('My Experiences')} navigate={'/dashboard/experiences'} />
+				<SidebarItem label={$t('Tailors')} navigate={'/dashboard/tailors'} />
 			</SidebarWrapper>
 
 			<div class="main-page w-full mx-4 mb-4">

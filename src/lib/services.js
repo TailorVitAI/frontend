@@ -122,3 +122,23 @@ export async function create_user_experience(experience) {
 export async function delete_user_experience(id) {
     return await fetchAPI(`/api/main/experience/${id}/`, { method: 'DELETE' }, true);
 }
+
+export async function get_user_tailors() {
+    return await fetchAPI('/api/main/tailor/', { method: 'GET' }, true);
+}
+
+export async function update_user_tailor(id, experience) {
+    return await fetchAPI(`/api/main/tailor/${id}/`, { method: 'PATCH', body: JSON.stringify(experience) }, true);
+}
+
+export async function create_user_tailor(tailor) {
+    return await fetchAPI('/api/main/tailor/', { method: 'POST', body: JSON.stringify(tailor) }, true);
+}
+
+export async function delete_user_tailor(id) {
+    return await fetchAPI(`/api/main/tailor/${id}/`, { method: 'DELETE' }, true);
+}
+
+export async function get_user_curriculum_vitaes() {
+    return await fetchAPI('/api/main/curriculum_vitae/', { method: 'GET' }, true);
+}
