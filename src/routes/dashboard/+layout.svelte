@@ -20,14 +20,14 @@
 	{#if loaded}
 		<div class="flex">
 			<SidebarWrapper title="Company" subtitle="company title" logo={logo_square}>
-				<SidebarItem label={$t('My Profile')} navigate={'dashboard/'} />
+				<SidebarItem label={$t('My Profile')} navigate={'/dashboard/'} />
+				<SidebarItem label={$t('My Experiences')} navigate={'/dashboard/experiences'} />
 			</SidebarWrapper>
 
-			<div class="main-page w-full">
+			<div class="main-page w-full mx-4 mb-4">
 				<slot />
 			</div>
 		</div>
-
 		<Footer name="" address="" year={2024} />
 	{/if}
 </div>

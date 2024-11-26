@@ -106,3 +106,19 @@ export async function get_user_profiles() {
 export async function update_user_profile(id, profile) {
     return await fetchAPI(`/api/main/profile/${id}/`, { method: 'PATCH', body: JSON.stringify(profile) }, true);
 }
+
+export async function get_user_experiences() {
+    return await fetchAPI('/api/main/experience/', { method: 'GET' }, true);
+}
+
+export async function update_user_experience(id, experience) {
+    return await fetchAPI(`/api/main/experience/${id}/`, { method: 'PATCH', body: JSON.stringify(experience) }, true);
+}
+
+export async function create_user_experience(experience) {
+    return await fetchAPI('/api/main/experience/', { method: 'POST', body: JSON.stringify(experience) }, true);
+}
+
+export async function delete_user_experience(id) {
+    return await fetchAPI(`/api/main/experience/${id}/`, { method: 'DELETE' }, true);
+}
