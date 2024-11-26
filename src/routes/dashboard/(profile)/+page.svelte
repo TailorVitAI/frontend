@@ -27,12 +27,28 @@
 	let handler_get_user_profiles = () => {
 		get_user_profiles().then((profiles) => {
 			profile = profiles[0];
+			// @ts-ignore
+			profile.skills = JSON.stringify(profile.skills);
+			// @ts-ignore
+			profile.languages = JSON.stringify(profile.languages);
+			// @ts-ignore
+			profile.hobbies = JSON.stringify(profile.hobbies);
+			// @ts-ignore
+			profile.interests = JSON.stringify(profile.interests);
 			is_loading = false;
 		});
 	};
 
 	let handler_update_user_profile = () => {
 		is_updating = true;
+		// @ts-ignore
+		profile.skills = JSON.parse(profile.skills);
+		// @ts-ignore
+		profile.languages = JSON.parse(profile.languages);
+		// @ts-ignore
+		profile.hobbies = JSON.parse(profile.hobbies);
+		// @ts-ignore
+		profile.interests = JSON.parse(profile.interests);
 		update_user_profile(profile.id, profile)
 			.then(() => {
 				handler_get_user_profiles();

@@ -13,7 +13,7 @@
 	let cv = {
 		id: null,
 		uri: null,
-		fit: null,
+		fitness: null,
 		comment: null,
 		content: null,
 		model_modified_at: null,
@@ -52,8 +52,10 @@
 					</div>
 					<div class="grow ml-2">
 						<Label>#CV{cv.id}</Label>
-						<Label>Position Fitness Indicator <span class="opacity-50">({cv.fit}/5)</span></Label>
-						<Progressbar progress={parseInt(cv.fit) * 20} color="yellow" />
+						<Label
+							>Position Fitness Indicator <span class="opacity-50">({cv.fitness}/5)</span></Label
+						>
+						<Progressbar progress={parseInt(cv.fitness) * 20} color="yellow" />
 						<span class="text-normal opacity-50">{convertDateFormat(cv.model_modified_at)} - </span>
 						<a href="/">View Analysis</a>
 					</div>

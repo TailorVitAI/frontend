@@ -79,6 +79,7 @@
 			})
 			.finally(() => {
 				is_updating = false;
+				experience = null;
 			});
 	};
 
@@ -136,7 +137,7 @@
 							<Input type="date" bind:value={experience.starting} />
 						</div>
 						<div class="grow">
-							<Label>Starting</Label>
+							<Label>Ending</Label>
 							<Input type="date" bind:value={experience.ending} />
 						</div>
 					</div>
