@@ -36,7 +36,7 @@
 
 <div class="flex h-screen items-center justify-center dark:bg-gray-900">
 	<Card class="w-full max-w-md dark:bg-gray-900">
-		<img src={logo} alt="logo" />
+		<!-- <img src={logo} alt="logo" /> -->
 		<h5 class="flex justify-center mt-10 text-lg font-medium text-gray-900 dark:text-white">
 			Sign in to your account
 		</h5>
