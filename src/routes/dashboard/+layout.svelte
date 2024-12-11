@@ -8,6 +8,7 @@
 	import { get_user_account } from '$lib/services';
 	import { onMount } from 'svelte';
 	import logo_square from '$lib/assets/logo-square.png';
+	import { Toaster } from 'svelte-french-toast';
 
 	let loaded = false;
 	onMount(() => {
@@ -32,6 +33,7 @@
 		<Footer name="" address="" year={2024} />
 	{/if}
 </div>
+<Toaster position="bottom-right" toastOptions={{ style: 'color: white; background: #3B4350;' }} />
 
 <style>
 	.main-page {
