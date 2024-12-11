@@ -12,10 +12,9 @@
 
 	let cv = {
 		id: null,
-		uri: null,
 		fitness: null,
 		comment: null,
-		content: null,
+		file: null,
 		model_modified_at: null,
 		model_created_at: null
 	};
@@ -46,7 +45,7 @@
 			<div class="grow mr-3">
 				<div class="flex">
 					<div>
-						<a href="/">
+						<a href={cv.file}>
 							<img src={pdf_file} width="64px" class="mt-1" alt="" />
 						</a>
 					</div>
@@ -56,8 +55,8 @@
 							>Position Fitness Indicator <span class="opacity-50">({cv.fitness}/5)</span></Label
 						>
 						<Progressbar progress={parseInt(cv.fitness) * 20} color="yellow" />
-						<span class="text-normal opacity-50">{convertDateFormat(cv.model_modified_at)} - </span>
-						<a href="/">View Analysis</a>
+						<span class="text-normal opacity-50">{convertDateFormat(cv.model_modified_at)} </span>
+						<!-- <a href="/">View Analysis</a> -->
 					</div>
 				</div>
 			</div>
