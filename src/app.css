@@ -63,3 +63,22 @@ h4{
     font-size: 14px;
     opacity: 60%;
 }
+
+input,select {
+    padding: 4px !important; 
+    padding-left: 8px !important; 
+}
+
+textarea {
+    padding: 4px !important; 
+    padding-left: 8px !important; 
+}
+
+label {
+    color: var(--text-gray-600) !important;
+}
+
+block {
+    margin: 0 !important;
+    padding: 0 !important;
+}

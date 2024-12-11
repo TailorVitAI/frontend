@@ -2,7 +2,7 @@
 	// @ts-nocheck
 	import { t } from 'svelte-i18n';
 	import { Footer } from 'flowbite-svelte';
-	import '../../app.pcss';
+	import '../../app.css';
 	import SidebarWrapper from '$lib/components/SidebarWrapper.svelte';
 	import SidebarItem from '$lib/components/SidebarItem.svelte';
 	import { get_user_account } from '$lib/services';

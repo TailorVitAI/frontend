@@ -96,11 +96,62 @@
 		<p class="mb-5">Add all your experiences here. Order is not important.</p>
 		{#each experiences as experience, index}
 			<div class="border rounded-xl mb-4 p-4">
-				<h2 class="mt-0">Experience {experiences.length > index + 1 ? index + 1 : '(New)'}</h2>
 				{#if experience.id != null}
-					<span class="opacity-50 mb-4 text-sm">
-						Latest update: {convertDateFormat(experience.model_modified_at)}
-					</span>
+					<div class="flex">
+						<div class="grow">
+							<h2 class="mt-0">
+								Experience {index + 1}
+							</h2>
+							<span class="opacity-50 mb-4 text-sm">
+								Latest update: {convertDateFormat(experience.model_modified_at)}
+							</span>
+						</div>
+						<div>
+							<div class="flex grow justify-end gap-x-2">
+								<Button
+									color="red"
+									outline
+									on:click={() => handler_delete_user_experience(experience.id)}
+									disabled={is_updating}
+								>
+									{#if is_updating}
+										<Spinner color="red" size="5" />
+									{/if}
+									Delete
+								</Button>
+								<Button
+									color="blue"
+									on:click={() => handler_update_user_experience(experience)}
+									disabled={is_updating}
+								>
+									{#if is_updating}
+										<Spinner color="blue" size="5" />
+									{/if}
+									Update
+								</Button>
+							</div>
+						</div>
+					</div>
+				{/if}
+				{#if experience.id == null}
+					<div class="flex">
+						<div class="grow">
+							<h2 class="mt-0">Experience (New)</h2>
+						</div>
+						<div>
+							<div class="flex grow justify-end gap-x-2">
+								<div class="flex grow justify-end">
+									<Button
+										color="blue"
+										class="content-end"
+										on:click={() => handler_create_user_experience(experience)}
+									>
+										Add
+									</Button>
+								</div>
+							</div>
+						</div>
+					</div>
 				{/if}
 				<div class="grid gap-y-2 {is_updating ? 'opacity-70' : ''}">
 					<div class="flex gap-x-2">
@@ -130,57 +181,31 @@
 							<Label>URL</Label>
 							<Input bind:value={experience.url} />
 						</div>
-					</div>
-					<div class="flex gap-x-2">
 						<div class="grow">
 							<Label>Starting</Label>
-							<Input type="date" bind:value={experience.starting} />
+							<Input
+								type="date"
+								size="sm"
+								bind:value={experience.starting}
+								defaultClass="w-full"
+								floatClass=""
+							/>
 						</div>
 						<div class="grow">
 							<Label>Ending</Label>
-							<Input type="date" bind:value={experience.ending} />
+							<Input
+								type="date"
+								bind:value={experience.ending}
+								size="sm"
+								defaultClass="w-full"
+								floatClass=""
+							/>
 						</div>
 					</div>
 					<div class="grow">
 						<Label>Description</Label>
 						<Textarea bind:value={experience.description} />
 					</div>
-				</div>
-
-				<div class="flex grow justify-end mt-4 gap-x-2">
-					{#if experience.id != null}
-						<Button
-							color="red"
-							outline
-							on:click={() => handler_delete_user_experience(experience.id)}
-							disabled={is_updating}
-						>
-							{#if is_updating}
-								<Spinner color="red" size="5" />
-							{/if}
-							Delete
-						</Button>
-						<Button
-							color="blue"
-							on:click={() => handler_update_user_experience(experience)}
-							disabled={is_updating}
-						>
-							{#if is_updating}
-								<Spinner color="blue" size="5" />
-							{/if}
-							Update
-						</Button>
-					{:else}
-						<div class="flex grow justify-end">
-							<Button
-								color="blue"
-								class="content-end"
-								on:click={() => handler_create_user_experience(experience)}
-							>
-								Add a new Experiment
-							</Button>
-						</div>
-					{/if}
 				</div>
 			</div>
 		{/each}

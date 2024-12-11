@@ -19,7 +19,6 @@
         "postcss.config.cjs": true,
         "svelte.config.js": true,
         "vite.config.js": true,
-        "**/app.pcss": true,
         "tailwind.config.cjs": true,
         "pnpm-lock.yaml": true,
         "package.json": true,
