@@ -82,11 +82,58 @@
 		<p class="mb-5">Here you can tailor your profile and experiences to a specific position.</p>
 		{#each tailors as tailor}
 			<div class="border rounded-xl mb-4 p-4">
-				<h2 class="mt-0">Tailor {tailor.id != null ? `#T${tailor.id}` : '(New)'}</h2>
-				{#if tailor.id != null}
-					<span class="opacity-50 mb-4 text-sm">
-						Last update: {convertDateFormat(tailor.model_modified_at)}
-					</span>
+				{#if tailor.id == null}
+					<div class="flex">
+						<div class="grow">
+							<h2 class="mt-0">Tailor (New)</h2>
+						</div>
+						<div class="flex justify-end gap-x-2 h-min">
+							<Button
+								color="blue"
+								class="content-end"
+								on:click={() => handler_create_user_tailor(tailor)}
+							>
+								Generate CV
+							</Button>
+						</div>
+					</div>
+				{:else}
+					<div class="flex">
+						<div class="grow">
+							<h2 class="mt-0">Tailor {`#T${tailor.id}`}</h2>
+							<span class="opacity-50 text-sm mb-4">
+								Last update: {convertDateFormat(tailor.model_modified_at)}
+							</span>
+						</div>
+						<div class="flex justify-end gap-x-2 h-min">
+							<Button
+								color="red"
+								outline
+								on:click={() => handler_delete_user_tailor(tailor.id)}
+								disabled={is_updating}
+							>
+								Delete
+							</Button>
+							<Button
+								color="dark"
+								outline
+								on:click={() => {
+									cvs_modal_is_visible = true;
+									cvs_modal_tailor_id = tailor.id;
+								}}
+								disabled={is_updating}
+							>
+								CV History
+							</Button>
+							<Button
+								color="blue"
+								on:click={() => handler_update_user_tailor(tailor)}
+								disabled={is_updating}
+							>
+								Regenerate CV
+							</Button>
+						</div>
+					</div>
 				{/if}
 				<div class="grid gap-y-2 {is_updating ? 'opacity-70' : ''}">
 					<div class="grow">
@@ -96,64 +143,22 @@
 							placeholder="the position's title; e.g. Senior Software Engineer "
 						/>
 					</div>
-					<div class="grow">
-						<Label>Description</Label>
-						<Textarea
-							bind:value={tailor.description}
-							placeholder="the job description including requirements, responsibilities, and expectations"
-						/>
+					<div class="grid grid-cols-2 gap-x-2">
+						<div>
+							<Label>Description</Label>
+							<Textarea
+								bind:value={tailor.description}
+								placeholder="the job description including requirements, responsibilities, and expectations"
+							/>
+						</div>
+						<div>
+							<Label>Additional</Label>
+							<Textarea
+								bind:value={tailor.additional}
+								placeholder="any additional information you want to be considered building your CV"
+							/>
+						</div>
 					</div>
-					<div class="grow">
-						<Label>Additional</Label>
-						<Textarea
-							bind:value={tailor.additional}
-							placeholder="any additional information you want to be considered building your CV"
-						/>
-					</div>
-				</div>
-				<div class="flex grow justify-end gap-x-2 mt-2">
-					{#if tailor.id == null}
-						<Button
-							color="blue"
-							class="content-end"
-							on:click={() => handler_create_user_tailor(tailor)}
-						>
-							Generate CV
-						</Button>
-					{:else}
-						<Button
-							color="dark"
-							outline
-							on:click={() => {
-								cvs_modal_is_visible = true;
-								cvs_modal_tailor_id = tailor.id;
-							}}
-							disabled={is_updating}
-						>
-							CV History
-						</Button>
-						<Button
-							color="red"
-							outline
-							on:click={() => handler_delete_user_tailor(tailor.id)}
-							disabled={is_updating}
-						>
-							{#if is_updating}
-								<Spinner color="red" size="5" />
-							{/if}
-							Delete
-						</Button>
-						<Button
-							color="blue"
-							on:click={() => handler_update_user_tailor(tailor)}
-							disabled={is_updating}
-						>
-							{#if is_updating}
-								<Spinner class="mr-2" color="blue" size="5" />
-							{/if}
-							Regenerate CV
-						</Button>
-					{/if}
 				</div>
 			</div>
 		{/each}
