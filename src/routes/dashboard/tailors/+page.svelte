@@ -6,9 +6,10 @@
 		update_user_tailor
 	} from '$lib/services';
 	import { convertDateFormat } from '$lib/utils';
-	import { Label, Textarea, Input, Button, Spinner, Select } from 'flowbite-svelte';
+	import { Label, Textarea, Input, Button, Spinner } from 'flowbite-svelte';
 	import { onMount } from 'svelte';
 	import CVsModal from './components/CVsModal.svelte';
+	import toast from 'svelte-french-toast';
 
 	let is_loading = true;
 	let is_updating = false;
@@ -41,6 +42,7 @@
 		delete_user_tailor(id)
 			.then(() => {
 				handler_get_user_tailors();
+				toast.success('Tailor deleted.');
 			})
 			.finally(() => {
 				is_updating = false;
@@ -49,9 +51,16 @@
 
 	let handler_update_user_tailor = (tailor) => {
 		is_updating = true;
+		toast.success('Creating a tailored CV, please be patient...');
 		update_user_tailor(tailor.id, tailor)
 			.then(() => {
 				handler_get_user_tailors();
+				toast.success('CV created.');
+				cvs_modal_is_visible = true;
+				cvs_modal_tailor_id = tailor.id;
+			})
+			.catch(() => {
+				toast.error('Something went wrong.');
 			})
 			.finally(() => {
 				is_updating = false;
@@ -60,9 +69,16 @@
 
 	let handler_create_user_tailor = (tailor) => {
 		is_updating = true;
+		toast.success('Creating a tailored CV, please be patient... ');
 		create_user_tailor(tailor)
 			.then(() => {
 				handler_get_user_tailors();
+				toast.success('CV created.');
+				cvs_modal_is_visible = true;
+				cvs_modal_tailor_id = tailor.id;
+			})
+			.catch(() => {
+				toast.error('Failed to create CV.');
 			})
 			.finally(() => {
 				is_updating = false;

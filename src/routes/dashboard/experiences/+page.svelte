@@ -31,7 +31,8 @@
 		{ value: 'FLT', name: 'Full-time' },
 		{ value: 'PRT', name: 'Part-time' },
 		{ value: 'SLE', name: 'Self-employed' },
-		{ value: 'VOL', name: 'Volunteer' }
+		{ value: 'VOL', name: 'Volunteer' },
+		{ value: 'CON', name: 'Contract' }
 	];
 	let category_items = [
 		{ value: 'EDU', name: 'Education' },
@@ -55,6 +56,10 @@
 		delete_user_experience(id)
 			.then(() => {
 				handler_get_user_experiences();
+				toast.success('Deleted the experience.');
+			})
+			.catch((error) => {
+				toast.success('Failed to delete the experience; ' + JSON.stringify(error));
 			})
 			.finally(() => {
 				is_updating = false;
@@ -66,6 +71,7 @@
 		update_user_experience(experience.id, experience)
 			.then(() => {
 				handler_get_user_experiences();
+				toast.success('Updated the experience.');
 			})
 			.finally(() => {
 				is_updating = false;
@@ -77,6 +83,7 @@
 		create_user_experience(experience)
 			.then(() => {
 				handler_get_user_experiences();
+				toast.success('Created the experience.');
 			})
 			.catch((error) => {
 				toast.error('Failed to created the experience; ' + JSON.stringify(error));
