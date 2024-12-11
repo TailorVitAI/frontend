@@ -8,6 +8,7 @@
 	import { convertDateFormat } from '$lib/utils';
 	import { Label, Textarea, Input, Button, Spinner, Select } from 'flowbite-svelte';
 	import { onMount } from 'svelte';
+	import toast from 'svelte-french-toast';
 
 	let is_loading = true;
 	let is_updating = false;
@@ -77,6 +78,9 @@
 			.then(() => {
 				handler_get_user_experiences();
 			})
+			.catch((error) => {
+				toast.error('Failed to created the experience; ' + JSON.stringify(error));
+			})
 			.finally(() => {
 				is_updating = false;
 				experience = null;
@@ -99,15 +103,13 @@
 				{#if experience.id != null}
 					<div class="flex">
 						<div class="grow">
-							<h2 class="mt-0">
-								Experience {index + 1}
-							</h2>
+							<h2 class="mt-0">Experience {index + 1}</h2>
 							<span class="opacity-50 mb-4 text-sm">
 								Latest update: {convertDateFormat(experience.model_modified_at)}
 							</span>
 						</div>
 						<div>
-							<div class="flex grow justify-end gap-x-2">
+							<div class="flex grow justify-end gap-x-2 h-min">
 								<Button
 									color="red"
 									outline
